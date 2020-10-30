@@ -5,14 +5,17 @@ class App extends Component {
     constructor() {
       super();
       this.state = { dat: new Date() };
-      this.loop=null;
+      this.loop = () => {
+        setInterval(() => {
+          this.setState({ dat: new Date() });
+        }, 1000);
+      };
     };
     componentDidMount() {
-      let val=new Date();
-      this.loop=setInterval(()=>this.setState({dat:val}),1000);
+      this.loop();
     }
     componentWillUnmount() {
-      clearInterval(this.loop);
+      clearInterval(this.loop());
     }
     render() {
       return <div className="Clock"><div className="time">{this.state.dat.getHours()%12}:{this.state.dat.getMinutes()}:{this.state.dat.getSeconds()} {this.state.dat.getHours%12===0?"AM":"PM"}</div></div>;
