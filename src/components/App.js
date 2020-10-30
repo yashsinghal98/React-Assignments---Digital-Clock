@@ -18,6 +18,7 @@ class App extends Component {
   render() {
     return (
       <div className="Clock">
+          <div className="time">
         {this.state.dat.getHours() % 12 < 10
           ? `0${this.state.dat.getHours() % 12}`
           : `${this.state.dat.getHours()}`}
@@ -30,6 +31,7 @@ class App extends Component {
           ? `0${this.state.dat.getSeconds() % 12}`
           : `${this.state.dat.getSeconds()}`}{" "}
         {this.state.dat.getHours % 12 === 0 ? "AM" : "PM"}
+        </div>
       </div>
     );
   }
