@@ -1,40 +1,44 @@
-import React, { Component } from "react";
+import React, { Component,useState } from "react";
 import "../styles/App.css";
-
 class App extends Component {
-  constructor() {
-    super();
-    this.state = { dat: new Date() };
-    this.loop = null;
-  }
-  componentDidMount() {
-    this.loop = setInterval(() => {
-      this.setState({ dat: new Date() });
-    }, 1000);
-  }
-  componentWillUnmount() {
-    clearInterval(this.loop);
-  }
-  render() {
-    return (
+    constructor(props) {
+      super(props);
+      this.state = {
+        time: new Date().toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          second: "numeric",
+          hour12: true
+        })
+      };
+    }
+    tick() {
+      this.setState({
+        time: new Date().toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          second: "numeric",
+          hour12: true
+        })
+      });
+    }
+  
+    componentDidMount() {
+      this.intervalID = setInterval(() => this.tick(), 1000);
+    }
+    componentWillUnmount() {
+      clearInterval(this.intervalID);
+    }
+    render() {
+      return (
         <div className="App">
-      <div className="Clock">
-        <h3 id="time">
-          {this.state.dat.getHours()%12}
-          :
-          {this.state.dat.getMinutes() < 10
-            ? `0${this.state.dat.getMinutes()}`
-            : `${this.state.dat.getMinutes()}`}
-          :
-          {this.state.dat.getSeconds() < 10
-            ? `0${this.state.dat.getSeconds()}`
-            : `${this.state.dat.getSeconds()}`}{" "}
-          {this.state.dat.getHours < 12  ? "AM" : "PM"}
-        </h3>
-      </div>
-      </div>
-    );
+          <div className="Clock">
+            <h3 id="time">{`${this.state.time}`}</h3>
+          </div>
+        </div>
+      );
+    }
   }
-}
-
-export default App;
+  
+  export default App;
+  
