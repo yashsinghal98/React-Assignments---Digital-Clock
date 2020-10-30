@@ -18,7 +18,7 @@ class App extends Component {
   render() {
     return (
       <div className="Clock">
-        <h3 className="time">
+        <h3 id="time">
           {this.state.dat.getHours() % 12}:
           {this.state.dat.getMinutes() < 10
             ? `0${this.state.dat.getMinutes()}`
