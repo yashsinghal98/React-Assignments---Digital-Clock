@@ -19,14 +19,10 @@ class App extends Component {
     return (
       <div className="Clock">
         <h3 id="time">
-          {this.state.dat.getHours() % 12<10?`0${this.state.dat.getHours()}`:`${this.state.dat.getHours()}`}:
-          {this.state.dat.getMinutes() < 10
-            ? `0${this.state.dat.getMinutes()}`
-            : `${this.state.dat.getMinutes()}`}
+          {this.state.dat.getHours() % 12}:
+          {this.state.dat.getMinutes()}
           :
-          {this.state.dat.getSeconds() < 10
-            ? `0${this.state.dat.getSeconds() % 12}`
-            : `${this.state.dat.getSeconds()}`}{" "}
+          {this.state.dat.getSeconds()}{" "}
           {this.state.dat.getHours < 12 ? "AM" : "PM"}
         </h3>
       </div>
