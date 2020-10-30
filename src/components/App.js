@@ -28,7 +28,7 @@ class App extends Component {
         {this.state.dat.getSeconds() < 10
           ? `0${this.state.dat.getSeconds() % 12}`
           : `${this.state.dat.getSeconds()}`}{" "}
-        {this.state.dat.getHours % 12 === 0 ? "AM" : "PM"}
+        {this.state.dat.getHours <12? "AM" : "PM"}
         </h3>
       </div>
     );
