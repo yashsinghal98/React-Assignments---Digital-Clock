@@ -5,30 +5,31 @@ class App extends Component {
   constructor() {
     super();
     this.state = { dat: new Date() };
-    this.loop = () => {
-      setInterval(() => {
-        this.setState({ dat: new Date() });
-      }, 1000);
-    };
+    this.loop = null;
   }
   componentDidMount() {
-    this.loop();
+    this.loop = setInterval(() => {
+      this.setState({ dat: new Date() });
+    }, 1000);
   }
   componentWillUnmount() {
-    clearInterval(this.loop());
+    clearInterval(this.loop);
   }
   render() {
     return (
       <div className="Clock">
-        <div className="time">
-        {this.state.dat.getHours() % 12<10?`0${this.state.dat.getHours()%12}`:`${this.state.dat.getHours()}`}
+        {this.state.dat.getHours() % 12 < 10
+          ? `0${this.state.dat.getHours() % 12}`
+          : `${this.state.dat.getHours()}`}
         :
-        {this.state.dat.getMinutes()<10?`0${this.state.dat.getMinutes()}`:`${this.state.dat.getMinutes()}`}
+        {this.state.dat.getMinutes() < 10
+          ? `0${this.state.dat.getMinutes()}`
+          : `${this.state.dat.getMinutes()}`}
         :
-        {this.state.dat.getSeconds()<10?`0${this.state.dat.getSeconds()%12}`:`${this.state.dat.getSeconds()}`}
-        {" "}
+        {this.state.dat.getSeconds() < 10
+          ? `0${this.state.dat.getSeconds() % 12}`
+          : `${this.state.dat.getSeconds()}`}{" "}
         {this.state.dat.getHours % 12 === 0 ? "AM" : "PM"}
-        </div>
       </div>
     );
   }
